@@ -24,7 +24,7 @@ aws:
   #secret_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
 
   #Use the following line disable the key checks and enable usage of AWS instance metadata for setting keys
-  #use_aws_metadata: true
+  use_aws_metadata: true
 
   # Specify AWS regions to query for metrics
   regions:
