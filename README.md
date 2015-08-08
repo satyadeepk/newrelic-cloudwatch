@@ -19,8 +19,7 @@ ExecStartPre=-/usr/bin/docker rm -v newrelic-cloudwatch
 ExecStartPre=/usr/bin/docker pull eatfirst/newrelic-cloudwatch:latest
 
 ExecStart=/usr/bin/docker run --name newrelic-cloudwatch \
--e NEWRELIC_KEY=xxx -e AWS_ACCESS_KEY=xxx \
--e AWS_SECRET_ACCESS_KEY=xxx -e AWS_REGION=xxx \
+-e NEWRELIC_KEY=xxx -e AWS_REGION=xxx \
 eatfirst/newrelic-cloudwatch:latest
 
 ExecStop=/usr/bin/docker stop newrelic-cloudwatch
