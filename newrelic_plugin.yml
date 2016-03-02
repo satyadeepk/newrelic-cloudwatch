@@ -46,18 +46,18 @@ agents:
   # Some of the Cloudwatch metrics are not immediately available and may
   # require a delay before being queried.
   ec2:
-    enabled: true
+    enabled: <%= ENV['EC2_ENABLED'] %>
   ebs:
-    enabled: true
+    enabled: <%= ENV['EBS_ENABLED'] %>
   elb:
-    enabled: true
+    enabled: <%= ENV['ELB_ENABLED'] %>
   rds:
-    enabled: true
+    enabled: <%= ENV['RDS_ENABLED'] %>
   sqs:
-    enabled: true
+    enabled: <%= ENV['SQS_ENABLED'] %>
   sns:
-    enabled: true
+    enabled: <%= ENV['SNS_ENABLED'] %>
   ec:
-    enabled: true
+    enabled: <%= ENV['MEMCACHED_ENABLED'] %>
   ecr:
-    enabled: true
+    enabled: <%= ENV['REDIS_ENABLED'] %>
