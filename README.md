@@ -2,27 +2,34 @@
 
 A container running the [newrelic_aws_cloudwatch_plugin](https://github.com/newrelic-platform/newrelic_aws_cloudwatch_plugin/).
 
-Example of service definition:
-
+## Build
+```console
+docker build -t yleisradio/newrelic_cloudwatch .
 ```
-[Unit]
-Description=NewRelic CloudWatch plugin
-After=docker.service
-Requires=docker.service
-After=flanneld.service
-Requires=flanneld.service
 
-[Service]
-TimeoutStartSec=0
-ExecStartPre=-/usr/bin/docker kill newrelic-cloudwatch
-ExecStartPre=-/usr/bin/docker rm -v newrelic-cloudwatch
-ExecStartPre=/usr/bin/docker pull eatfirst/newrelic-cloudwatch:latest
+## Configure
+You need to pass the following environment variables to the container
+* `AWS_REGION`
+* `AWS_ACCESS_KEY_ID`
+* `AWS_SECRET_ACCESS_KEY`
+* `NEWRELIC_KEY`
 
-ExecStart=/usr/bin/docker run --name newrelic-cloudwatch \
--e NEWRELIC_KEY=xxx -e AWS_REGION=xxx \
-eatfirst/newrelic-cloudwatch:latest
+Modify newrelic_plugin.yml file, if you want to enable instance profile based AWS access
+* comment out `access_key` and `secret_key` keys
+* uncomment `use_aws_metadata` key
 
-ExecStop=/usr/bin/docker stop newrelic-cloudwatch
-ExecStop=/usr/bin/docker rm -v newrelic-cloudwatch
-Restart=always
+Use environment variables to enable reporting services
+* `EC2_ENABLED` for EC2 reporting
+* `EBS_ENABLED` for EBS reporting
+* `ELB_ENABLED` for ELB reporting
+* `RDS_ENABLED` for RDS reporting
+* `SQS_ENABLED` for SQS reporting
+* `SNS_ENABLED` for SNS reporting
+* `MEMCACHED_ENABLED` for ElastiCache memcached reporting
+* `REDIS_ENABLED` for ElastiCache redis reporting
+* `DYNAMODB_ENABLED` for DynamoDB  reporting
+
+## Run
+```console
+docker run -e AWS_REGION=eu-west-1 -e ... yleisradio/newrelic_cloudwatch
 ```
