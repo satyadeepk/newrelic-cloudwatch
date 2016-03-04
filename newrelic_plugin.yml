@@ -10,7 +10,7 @@ newrelic:
   # Set to '1' for verbose output, remove for normal output.
   # All output goes to stdout/stderr.
   #
-  # verbose: 1
+  #verbose: 1
 #
 # AWS configuration.
 #
@@ -20,11 +20,11 @@ aws:
   #secret_key: 'YOUR_AWS_SECRET_KEY_HERE'
 
   #Use the following if you would like to configure AWS keys with ENV variables
-  #access_key: <%= ENV['AWS_ACCESS_KEY'] %>
-  #secret_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
+  access_key: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+  secret_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
 
   #Use the following line disable the key checks and enable usage of AWS instance metadata for setting keys
-  use_aws_metadata: true
+  #use_aws_metadata: true
 
   # Specify AWS regions to query for metrics
   regions:
@@ -46,18 +46,20 @@ agents:
   # Some of the Cloudwatch metrics are not immediately available and may
   # require a delay before being queried.
   ec2:
-    enabled: <%= ENV['EC2_ENABLED'] %>
+    enabled: <%= ENV['EC2_ENABLED'] == "1" %>
   ebs:
-    enabled: <%= ENV['EBS_ENABLED'] %>
+    enabled: <%= ENV['EBS_ENABLED'] == "1" %>
   elb:
-    enabled: <%= ENV['ELB_ENABLED'] %>
+    enabled: <%= ENV['ELB_ENABLED'] == "1" %>
   rds:
-    enabled: <%= ENV['RDS_ENABLED'] %>
+    enabled: <%= ENV['RDS_ENABLED'] == "1" %>
   sqs:
-    enabled: <%= ENV['SQS_ENABLED'] %>
+    enabled: <%= ENV['SQS_ENABLED'] == "1" %>
   sns:
-    enabled: <%= ENV['SNS_ENABLED'] %>
+    enabled: <%= ENV['SNS_ENABLED'] == "1" %>
   ec:
-    enabled: <%= ENV['MEMCACHED_ENABLED'] %>
+    enabled: <%= ENV['MEMCACHED_ENABLED'] == "1" %>
   ecr:
-    enabled: <%= ENV['REDIS_ENABLED'] %>
+    enabled: <%= ENV['REDIS_ENABLED'] == "1" %>
+  ddb:
+    enabled: <%= ENV['DYNAMODB_ENABLED'] == "1" %>
