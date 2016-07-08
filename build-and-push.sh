@@ -8,7 +8,7 @@ if [ "$#" -ne 1 ]; then
   exit 1
 fi
 
-eval $(asu infra-aws-yle ops aws ecr get-login --region eu-west-1)
+eval $(asu infra-aws-yle ${TF_AWS_ROLE:-dev} aws ecr get-login --region eu-west-1)
 docker build --no-cache -t "$DOCKER_IMAGE":"$1" .
 docker tag "$DOCKER_IMAGE":"$1" "$ECR_REPOSITORY":"$1"
 docker push "$ECR_REPOSITORY":"$1"
