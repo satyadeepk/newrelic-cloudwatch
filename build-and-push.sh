@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DOCKER_IMAGE="yleisradio/newrelic-cloudwatch"
-ECR_REPOSITORY="352476883983.dkr.ecr.eu-west-1.amazonaws.com/newrelic-cloudwatch-production"
+ECR_REPOSITORY="352476883983.dkr.ecr.eu-west-1.amazonaws.com/newrelic-cloudwatch"
 
 if [ "$#" -ne 1 ]; then
   echo "Usage: $0 docker_image_tag" >&2
