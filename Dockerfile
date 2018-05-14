@@ -20,7 +20,7 @@ RUN curl -s -L https://github.com/newrelic-platform/newrelic_aws_cloudwatch_plug
 WORKDIR /newrelic_aws_cloudwatch_plugin
 RUN mv newrelic_aws_cloudwatch_plugin-latest/* . && \
   rm -rf newrelic_aws_cloudwatch_plugin-latest && \
-  bundle install --clean --quiet --without test
+  bundle install --quiet --without test
 
 ADD newrelic_plugin.yml config/newrelic_plugin.yml
 
