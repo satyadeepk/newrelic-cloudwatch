@@ -28,8 +28,9 @@ aws:
 
   # Specify AWS regions to query for metrics
   regions:
-    -
-     <%= ENV['AWS_REGION'] %>
+    - us-east-1
+    - ap-south-1
+     #<%= ENV['AWS_REGION'] %>
 
 #
 # Agent configuration.
